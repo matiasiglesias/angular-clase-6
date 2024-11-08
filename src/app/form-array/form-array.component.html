@@ -1,0 +1,17 @@
+<form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+  <div formArrayName="items">
+    <div *ngFor="let item of items.controls; let i = index">
+      <input [formControlName]="i" placeholder="Elemento {{ i + 1 }}">
+      <button (click)="removeItem(i)">Eliminar</button>
+      <!-- Mensaje de error para el campo requerido -->
+      <div *ngIf="item.invalid && item.touched">
+        <small class="error">Este campo es obligatorio</small>
+      </div>
+    </div>
+  </div>
+  <button (click)="addItem()">Añadir Elemento</button>
+
+  <br />
+  <button type="submit" [disabled]="formulario.invalid">Enviar</button>
+
+</form>
